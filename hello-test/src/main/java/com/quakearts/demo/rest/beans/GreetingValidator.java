@@ -7,12 +7,12 @@ public class GreetingValidator implements ConstraintValidator<CheckGreeting, Str
 
 	@Override
 	public void initialize(CheckGreeting constraintAnnotation) {
+		//Does nothing
 	}
 
 	@Override
 	public boolean isValid(String greeting, ConstraintValidatorContext context) {
-		boolean value = greeting.matches(".*\\{0\\}.*$");
-		return value;
+		return greeting.matches(".*\\{0\\}.*$");
 	}
 
 }

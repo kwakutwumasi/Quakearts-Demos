@@ -78,11 +78,8 @@
 						</goals>
 						<configuration>
 							<target name="Copy wars">
-								<echo>Copying Resources</echo>
+								<echo>Creating Required Files</echo>
 								<mkdir dir="target/etc" />
-								<copy file="conf/main-server.config.json" tofile="target/etc/main-server.config.json" overwrite="true" />
-								<copy file="conf/main-web.xml" tofile="target/etc/main-web.xml" overwrite="true" />
-								<copy file="conf/main-webapp.config.json" tofile="target/etc/main-webapp.config.json" overwrite="true" />
 							</target>
 						</configuration>
 					</execution>

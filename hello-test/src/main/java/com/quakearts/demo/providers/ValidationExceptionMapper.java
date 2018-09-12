@@ -8,6 +8,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
+import com.quakearts.demo.rest.beans.ErrorResponse;
+
 @Provider
 public class ValidationExceptionMapper implements ExceptionMapper<ConstraintViolationException> {
 
@@ -18,7 +20,8 @@ public class ValidationExceptionMapper implements ExceptionMapper<ConstraintViol
 		}).collect(Collectors.toList());
 		
 		return Response.status(Response.Status.BAD_REQUEST)
-				.entity(violations).build();
+				.entity(new ErrorResponse()
+						.withMessageAs(violations.toString())).build();
 	}
 
 }

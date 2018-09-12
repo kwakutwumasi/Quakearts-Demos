@@ -16,7 +16,7 @@ import javax.validation.Payload;
 @Target({ TYPE, METHOD, PARAMETER, ANNOTATION_TYPE })
 @Constraint(validatedBy=GreetingValidator.class)
 public @interface CheckGreeting {
-    String message() default "Invalid greeting";
+    String message() default "Invalid greeting. Must contain '{0}' as a placeholder for name";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default{};
 }

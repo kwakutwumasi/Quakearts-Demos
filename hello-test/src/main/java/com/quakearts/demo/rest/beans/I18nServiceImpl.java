@@ -7,8 +7,9 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.inject.Singleton;
-import javax.ws.rs.BadRequestException;
-import javax.ws.rs.NotFoundException;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 @Singleton
 public class I18nServiceImpl implements I18nService {
@@ -28,7 +29,8 @@ public class I18nServiceImpl implements I18nService {
 	@Override
 	public void updateMessage(Locale locale, String greeting) {
 		if(!greetings.containsKey(locale))
-			throw new NotFoundException();
+			throw new WebApplicationException(Response.status(Status.NOT_FOUND)
+					.entity(new ErrorResponse().withMessageAs("Greeting for this locale has not been created. POST to create")).build());
 		
 		greetings.put(locale, greeting);
 	}
@@ -36,7 +38,8 @@ public class I18nServiceImpl implements I18nService {
 	@Override
 	public void createMessage(Locale locale, String greeting) {
 		if(greetings.containsKey(locale))
-			throw new BadRequestException("Greeting for this locale has already been created. PUT to update");
+			throw new WebApplicationException(Response.status(Status.NOT_ACCEPTABLE)
+					.entity(new ErrorResponse().withMessageAs("Greeting for this locale has already been created. PUT to update")).build());
 		
 		greetings.put(locale, greeting);
 	}

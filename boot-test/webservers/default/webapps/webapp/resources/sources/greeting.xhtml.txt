@@ -6,59 +6,13 @@
 	  xmlns:c="http://quakearts.com/2.0/common"
 	  xmlns:b="http://quakearts.com/2.0/boot"
 	  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
-<h:head>
-	<meta charset="ISO-8859-1" />
-	<title>The Greeting App</title>
-</h:head>
-<h:body>
-	<b:ajaxLoader mainloaderimage="../resources/images/loading-squares.gif"
-		miniloaderimage="../resources/images/login-loading.GIF"
-		overlayloaderimage="../resources/images/loading-small.svg"
-		startTimeout="1" />
-	<b:sideMenu styleClass="hidden-xs">
-		<b:nav style="margin-top: 60px">
-			<h:outputLink value="https://google.com">
-				<b:fa value="google"></b:fa>Google
-			</h:outputLink>
-			<h:outputLink value="https://github.com/kwakutwumasi">
-				<b:fa value="github"></b:fa>Git Hub
-			</h:outputLink>
-			<b:menu value="Others">
-				<h:outputLink value="https://yahoo.com">
-					<b:fa value="yahoo"></b:fa>Yahoo
-				</h:outputLink>			
-			</b:menu>
-		</b:nav>
-	</b:sideMenu>
-	<b:panel popup="true">
-		<f:facet name="header">Welcome</f:facet>
-		This app is a demo of the QA-Boot Library, an implementation of Bootstrap 3 for JSF 2.2
-		To view the JSF source code go to <a href="/resources/sources/greeting.xhtml.txt">greeting.xhtml</a>
-	</b:panel>
-	<b:container fluid="true" id="container">
-		<b:navbar fluid="true" responsive="true" type="inverse" position="fixed-top">
-			<f:facet name="header"></f:facet>
-			<b:nav>
-				<h:outputLink value="https://gmail.com">
-					<b:glyph value="send"></b:glyph> GMail
-				</h:outputLink>
-				<h:outputLink value="https://instagram.com">
-					<b:fa value="instagram"></b:fa> Instagram
-				</h:outputLink>
-				<b:menu value="Others">
-					<h:outputLink value="https://facebook.com">
-						<b:fa value="facebook"></b:fa> Facebook 
-					</h:outputLink>			
-				</b:menu>
-			</b:nav>
-			<b:form>
-				<b:formGroup>
-					<b:button actionListener="#{greeting.reset}">
-						<b:glyph value="refresh"></b:glyph>
-					</b:button>
-				</b:formGroup>
-			</b:form>
-		</b:navbar>
+<ui:composition template="/template.xhtml">
+	<ui:define name="content">
+		<b:panel popup="true">
+			<f:facet name="header">Welcome</f:facet>
+			This app is a demo of the QA-Boot Library, an implementation of Bootstrap 3 for JSF 2.2
+			To view the JSF source code go to <a href="/resources/sources/greeting.xhtml.txt">greeting.xhtml</a>
+		</b:panel>		
 		<b:row style="margin-top:80px;" id="mainComp">
 			<h:form>
 				<b:column xs="10" lg="2" offsetlg="1">
@@ -68,7 +22,7 @@
 						<h:commandLink p:data-overlay-target="#{panelsComp.clientId}">
 							<f:ajax onevent="#{loader.overlayAjaxLoader}" 
 								onerror="refresh"
-								render="panels messages"></f:ajax>
+								render="breadCrumbs panels messages"></f:ajax>
 								Home
 							<f:setPropertyActionListener value="#{null}" 
 								target="#{greeting.state}">
@@ -77,7 +31,7 @@
 						<h:commandLink p:data-overlay-target="#{panelsComp.clientId}">
 							<f:ajax onevent="#{loader.overlayAjaxLoader}" 
 								onerror="refresh"
-								render="panels messages"></f:ajax>
+								render="breadCrumbs panels messages"></f:ajax>
 								Settings
 							<f:setPropertyActionListener value="setting" 
 								target="#{greeting.state}">
@@ -86,7 +40,7 @@
 						<h:commandLink p:data-overlay-target="#{panelsComp.clientId}">
 							<f:ajax onevent="#{loader.overlayAjaxLoader}" 
 								onerror="refresh"
-								render="panels messages"></f:ajax>
+								render="breadCrumbs panels messages"></f:ajax>
 								Language Upload
 							<f:setPropertyActionListener value="languageUpload" 
 								target="#{greeting.state}">
@@ -95,7 +49,7 @@
 						<h:commandLink p:data-overlay-target="#{panelsComp.clientId}">
 							<f:ajax onevent="#{loader.overlayAjaxLoader}" 
 								onerror="refresh"
-								render="panels messages"></f:ajax>
+								render="breadCrumbs panels messages"></f:ajax>
 								Search
 							<f:setPropertyActionListener value="search" 
 								target="#{greeting.state}">
@@ -108,20 +62,19 @@
 					<div>
 						<b:label value="Boot Breadcrumbs:" type="success"></b:label><br />
 						<b:breadCrumb style="font-size:8px;" id="breadCrumbsComp">
-							<b:breadCrumbItem activate="#{empty greeting.state}">
+							<b:breadCrumbItem activate="#{empty greeting.state}" id="breadCrumbs">
 								<h:commandLink value="Home">
 									<f:setPropertyActionListener target="#{greeting.state}"
 												value="#{null}"></f:setPropertyActionListener>
-									<f:ajax onerror="refresh" onevent="#{loader.mainAjaxLoader}"></f:ajax>
+									<f:ajax onerror="refresh" 
+									render="breadCrumbs panels messages"
+									onevent="#{loader.mainAjaxLoader}"></f:ajax>
 								</h:commandLink>
-								<b:breadCrumbItem activate="#{greeting.state eq 'setting'}">
-									Settings
+								<b:breadCrumbItem label="Settings" activate="#{greeting.state eq 'setting'}">
 								</b:breadCrumbItem>
-								<b:breadCrumbItem activate="#{greeting.state eq 'languageUpload'}">
-									Language Upload
+								<b:breadCrumbItem label="Language Upload" activate="#{greeting.state eq 'languageUpload'}">
 								</b:breadCrumbItem>
-								<b:breadCrumbItem activate="#{greeting.state eq 'search'}">
-									Search
+								<b:breadCrumbItem label="Search" activate="#{greeting.state eq 'search'}">
 								</b:breadCrumbItem>
 							</b:breadCrumbItem>
 						</b:breadCrumb>
@@ -262,8 +215,12 @@
 						</f:facet>
 						<b:formGroup>
 							<label>Available Language Tags</label>
-							<b:selectOneMenu value="#{greeting.selectedLanguageTag}">
-								<f:selectItems value="#{greeting.languages}"
+							<b:selectOneMenu id="availableLanguageTags"
+								value="#{greeting.selectedLanguageTag}"
+								label="Select a language to upload"
+								buttonClass="btn-block"
+								mainClass="fill100">
+								<f:selectItems value="#{greeting.availableLanguageTags}"
 									itemLabel="#{langGroup[0]}"
 									itemValue="#{langGroup[1]}"
 									var="langGroup">
@@ -271,8 +228,8 @@
 							</b:selectOneMenu>
 						</b:formGroup>
 						<label>Upload File</label>
-						<b:fileinput accept=".properties"
-							render="messages" onerror="refresh"
+						<b:fileinput accept=".properties" execute="availableLanguageTags"
+							render="messages" onerror="refresh" allowMultiple="true"
 							name="#{greeting.messageBundleFileName}"
 							data="#{greeting.messageBundleBytes}">
 							<c:executeAction listener="#{greeting.addGreetingBundle}">
@@ -284,7 +241,8 @@
 							Search Action Logs
 						</f:facet>
 						<b:label value="Boot Datatable:" type="danger"></b:label><br />
-						<b:pagination data-overlay-target="#{table.clientId}" 
+						<b:pagination data-overlay-target="#{table.clientId}"
+							onevent="#{loader.overlayAjaxLoader}"
 							for="#{table}" maxPages="3" pageSize="10">
 						</b:pagination>
 						<b:dataTable binding="#{table}" id="table" var="actionLog" value="#{greeting.actionLogs}">
@@ -327,7 +285,14 @@
 									render="table messages" execute="@this actions">
 								</f:ajax>
 							</b:button>
-						</b:formGroup>
+							<b:button data-overlay-target="#{table.clientId}">
+								<b:glyph value="list"></b:glyph>
+								<f:ajax listener="#{greeting.showAllActions}"
+									onevent="#{loader.overlayAjaxLoader}" onerror="refresh"
+									render="table messages" execute="@this actions">
+								</f:ajax>
+							</b:button>
+						</b:formGroup>						
 					</b:panel>
 				</b:column>
 				<b:column id="carouselColumn" xs="12" lg="3"
@@ -368,11 +333,6 @@
 				</b:column>
 			</h:form>
 		</b:row>
-	</b:container>
-	<b:script id="script">
-		var refresh = function(){
-			location.reload();
-		};
-	</b:script>
-</h:body>
+	</ui:define>
+</ui:composition>
 </html>
