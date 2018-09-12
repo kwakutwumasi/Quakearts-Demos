@@ -40,7 +40,7 @@
 
       // Build a system
       const ui = SwaggerUIBundle({
-        url: "http://localhost:8080/openapi.json",
+        url: location.protocol+"//"+location.hostname+(location.port?":"+location.port:"")+"/openapi.json",
         dom_id: '#swagger-ui',
         deepLinking: true,
         presets: [
