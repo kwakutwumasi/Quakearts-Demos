@@ -1,0 +1,11 @@
+{
+ 		"port":8643,
+ 		"usessl":true,
+        "protocols":"TLSv1.2",
+        "sslHostConfig.certificateVerification":"false",
+        "sslHostConfig.certificateKeystoreType":"PKCS12",
+        "sslHostConfig.certificateKeystorePassword":"",
+        "sslHostConfig.certificateKeystoreFile":"",
+        "addunsecured":true,
+        "unsecuredPort":8183
+}
