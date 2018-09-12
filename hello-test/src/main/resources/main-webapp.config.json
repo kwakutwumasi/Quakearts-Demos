@@ -9,7 +9,8 @@
 			"jackson-module-jaxb-annotations-2.9.5.jar",
 			"qa-resteasy-cdi-1.0.1.jar",
 			"resteasy-jaxrs-3.5.1.Final.jar",
-			"swagger-jaxrs2-2.0.3.jar"]
+			"swagger-jaxrs2-2.0.3.jar",
+			"hello-test-0.0.1.jar"]
 	},
-	"webapp.directories":{"set":["target/classes"]}
+	"webapp.directories":{"set":["etc"]}
 }
