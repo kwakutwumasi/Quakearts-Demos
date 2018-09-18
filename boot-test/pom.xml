@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.quakearts.webtools</groupId>
 	<artifactId>boot-test</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<build>
 		<plugins>
 			<plugin>
@@ -23,7 +23,7 @@
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>repo</classpathPrefix>
 							<classpathLayoutType>repository</classpathLayoutType>
-							<mainClass>com.quakearts.appbase.Main</mainClass>
+							<mainClass>com.quakearts.webtools.demo.Main</mainClass>
 						</manifest>
 						<manifestEntries>
 							<Class-Path>etc/</Class-Path>
@@ -40,20 +40,14 @@
 					<programs>
 						<program>
 							<id>webapp</id>
-							<mainClass>com.quakearts.appbase.Main</mainClass>
-							<commandLineArguments>
-								<commandLineArgument>com.quakearts.webtools.demo.Main</commandLineArgument>
-							</commandLineArguments>
+							<mainClass>com.quakearts.webtools.demo.Main</mainClass>
 						</program>
 						<program>
 							<id>webapptest</id>
-							<mainClass>com.quakearts.appbase.Main</mainClass>
+							<mainClass>com.quakearts.webtools.demo.Main</mainClass>
 							<jvmSettings>
 								<extraArgument>-agentlib:jdwp=transport=dt_socket,address=localhost:4000,server=y,suspend=y</extraArgument>
 							</jvmSettings>
-							<commandLineArguments>
-								<commandLineArgument>com.quakearts.webtools.demo.Main</commandLineArgument>
-							</commandLineArguments>
 						</program>
 					</programs>
 				</configuration>

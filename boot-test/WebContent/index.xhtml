@@ -7,6 +7,18 @@
 	  xmlns:b="http://quakearts.com/2.0/boot"
 	  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 <ui:composition template="/template.xhtml">
+	<ui:define name="top">
+<style>
+.index-panel {
+	height: 500px;
+	overflow:hidden;
+}
+.index-content{
+	height: 350px;
+	overflow:hidden;
+}
+</style>	
+	</ui:define>
 	<ui:define name="content">
 		<b:row style="margin-top:80px;">
 			<b:column xs="12" offsetlg="1" lg="11">
@@ -25,8 +37,8 @@
 			</b:column>
 		</b:row>
 		<b:row>
-			<b:column xs="12" lg="3" offsetlg="1">
-				<b:panel>
+			<b:column xs="12" sm="4" lg="3" offsetlg="1">
+				<b:panel styleClass="index-panel">
 					<f:facet name="header">
 						<h:outputLink value="/greeting.jsf">The Greeting App</h:outputLink>
 					</f:facet>
@@ -38,8 +50,8 @@
 					</ul>
 				</b:panel>
 			</b:column>
-			<b:column xs="12" lg="3">
-				<b:panel>
+			<b:column xs="12" sm="4" lg="3">
+				<b:panel styleClass="index-panel">
 					<f:facet name="header">
 						<h:outputLink value="https://demo.quakearts.com:8663/ui/index.html">The Hello REST Service</h:outputLink>
 					</f:facet>
@@ -51,38 +63,42 @@
 					</ul>
 				</b:panel>
 			</b:column>
-			<b:column xs="12" lg="3">
-				<b:panel>
+			<b:column xs="12" sm="4" lg="3">
+				<b:panel styleClass="index-panel">
 					<f:facet name="header">
 						<h:outputLink value="http://demo.quakearts.com:8280/test-store">The QuakeArts Web Acquiring Hosted Checkout Solution</h:outputLink>
 					</f:facet>
-					Showcasing:
-					<ul class="list-group">
-						<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-appbase/">qa-appbase V2.1</h:outputLink></li>
-						<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-resteasy-cdi/">qa-resteasy-cdi V1.0.1</h:outputLink></li>
-						<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-boot/">qa-boot V2.2.1</h:outputLink></li>
-						<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-weldjsf-cdi/">qa-weldjsf-cdi V1.0.1</h:outputLink></li>
-						<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Identity-Manager">identity-manager V2.1.0</h:outputLink></li>
-						<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-crypto/">qa-crypto V3.0</h:outputLink></li>
-						<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-orm/">qa-orm V2.3.1</h:outputLink></li>
-						<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-orm-hibernate/">qa-orm-hibernate V2.3.1</h:outputLink></li>
-						<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-orm-hibernate-web/">qa-orm-hibernate-web V1.0.1</h:outputLink></li>
-						<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-auth/">qa-auth V2.0.2</h:outputLink></li>
-						<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-testtools/">qa-testtools V1.0.3</h:outputLink></li>
-						<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-resttools/">qa-resttools V1.0.1</h:outputLink></li>
-						<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-restsecurity/">qa-restsecurity V1.0.2</h:outputLink></li>
-					</ul>
-					
-					Other Application Front-Ends:
-					<ul class="list-group">
-						<li class="list-group-item"><h:outputLink value="https://demo.quakearts.com:8553/identity-manager-web/">Identity Manager</h:outputLink></li>
-						<li class="list-group-item"><h:outputLink value="https://demo.quakearts.com:8553/acquirer-management-console/">Acquirer Management Console</h:outputLink></li>
-						<li class="list-group-item"><h:outputLink value="https://demo.quakearts.com:8443/acquirer-merchant-console">Acquirer Merchant Console</h:outputLink></li>
-					</ul>
-					<p>Email info(at)quakearts.com for demo logins</p>
+					<div class="index-content">
+						Showcasing:
+						<ul class="list-group">
+							<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-appbase/">qa-appbase V2.1</h:outputLink></li>
+							<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-resteasy-cdi/">qa-resteasy-cdi V1.0.1</h:outputLink></li>
+							<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-boot/">qa-boot V2.2.1</h:outputLink></li>
+							<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-weldjsf-cdi/">qa-weldjsf-cdi V1.0.1</h:outputLink></li>
+							<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Identity-Manager">identity-manager V2.1.0</h:outputLink></li>
+							<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-crypto/">qa-crypto V3.0</h:outputLink></li>
+							<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-orm/">qa-orm V2.3.1</h:outputLink></li>
+							<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-orm-hibernate/">qa-orm-hibernate V2.3.1</h:outputLink></li>
+							<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-orm-hibernate-web/">qa-orm-hibernate-web V1.0.1</h:outputLink></li>
+							<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-auth/">qa-auth V2.0.2</h:outputLink></li>
+							<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-testtools/">qa-testtools V1.0.3</h:outputLink></li>
+							<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-resttools/">qa-resttools V1.0.1</h:outputLink></li>
+							<li class="list-group-item"><h:outputLink value="https://github.com/kwakutwumasi/Quakearts-Webtools/tree/master/qa-restsecurity/">qa-restsecurity V1.0.2</h:outputLink></li>
+						</ul>
+						Other Application Front-Ends:
+						<ul class="list-group">
+							<li class="list-group-item"><h:outputLink value="https://demo.quakearts.com:8553/identity-manager-web/">Identity Manager</h:outputLink></li>
+							<li class="list-group-item"><h:outputLink value="https://demo.quakearts.com:8553/acquirer-management-console/">Acquirer Management Console</h:outputLink></li>
+							<li class="list-group-item"><h:outputLink value="https://demo.quakearts.com:8443/acquirer-merchant-console">Acquirer Merchant Console</h:outputLink></li>
+						</ul>
+						<p>Email info(at)quakearts.com for demo logins</p>
+					</div>
 				</b:panel>
 			</b:column>
 		</b:row>
+		<b:script>
+$('.index-content').mCustomScrollbar({theme:"dark-thin"});
+		</b:script>
 	</ui:define>
 </ui:composition>
 </html>

@@ -9,13 +9,16 @@
 <h:head>
 	<meta charset="ISO-8859-1" />
 	<title>The Greeting App</title>
+<ui:insert name="top"></ui:insert>
+<b:resource library="scrollbars" name="jquery.mCustomScrollbar.concat.min.js" type="script"></b:resource>
+<b:resource library="scrollbars" name="jquery.mCustomScrollbar.min.css" type="css"></b:resource>
 </h:head>
 <h:body>
 	<b:ajaxLoader mainloaderimage="../resources/images/loading-squares.gif"
 		miniloaderimage="../resources/images/login-loading.GIF"
 		overlayloaderimage="../resources/images/loading-small.svg"
 		startTimeout="1" />
-	<b:sideMenu styleClass="hidden-xs">
+	<b:sideMenu styleClass="hidden-xs hidden-sm">
 		<b:nav style="margin-top: 60px">
 			<h:outputLink value="https://www.quakearts.com">
 				<b:fa value="globe"></b:fa>QuakeArts
@@ -57,9 +60,9 @@
 		<ui:insert name="content"></ui:insert>
 	</b:container>
 	<b:script id="script">
-		var refresh = function(){
-			location.reload();
-		};
+var refresh = function(){
+	location.reload();
+};
 	</b:script>
 </h:body>
 </html>

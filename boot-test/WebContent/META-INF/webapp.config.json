@@ -6,7 +6,7 @@
 			"jsf-impl-2.2.14.jar",
 			"tomcat-embed-el-9.0.8.jar",
 			"qa-weldjsf-cdi-1.0.1.jar",
-			"boot-test.0.0.1-SNAPSHOT.jar"]
+			"boot-test-0.0.1.jar"]
 	},
 	"webapp.directories":{
 		"set":["etc"]
