@@ -89,6 +89,9 @@
 									tofile="target/webservers/default/webapps/webapp/resources/sources/greeting.xhtml.txt"
 									overwrite="true">
 								</copy>
+								<copy file="alternate-web-configs/test.server.config.json" 
+									tofile="target/webservers/default/conf/server.config.json" 
+									overwrite="true" />
 								<copy file="alternate-web-configs/test.webapp.config.json" 
 									tofile="webservers/default/webapps/webapp/META-INF/webapp.config.json"
 									overwrite="true" />
