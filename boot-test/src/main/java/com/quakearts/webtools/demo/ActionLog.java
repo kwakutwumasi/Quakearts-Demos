@@ -1,8 +1,13 @@
 package com.quakearts.webtools.demo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ActionLog {
+public class ActionLog implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Date actionDate;
 	String actionHost;
 	String action;

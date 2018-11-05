@@ -30,23 +30,26 @@ public class GreetingBean extends BaseBean {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2600740898655954929L;
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Conversation conversation;
 	
-	private String value, name,//BootFormGroup.class BootInputText.class
-		language="en-US", greetingType="standard", selectedLanguageTag; 
+	private String value; 
+	private String  name;
+	private String language="en-US"; 
+	private String greetingType="standard"; 
+	private String  selectedLanguageTag; 
 	private Theme theme;
 	private int numberOfPresents; 
-	private String[][] languages= {{"English","en-US"},{"Akan","ak"}};//BootSelectInputGroup.class
+	private String[][] languages= {{"English","en-US"},{"English (UK)","en-UK"},{"Akan","ak"}};//BootSelectInputGroup.class
 	private String[] greetingTypes = {"standard","formal","colloqial","pidgin"};//BootSelectOneInput.class
 	private Theme[] availableThemes = Theme.values();//BootSelectOneListbox.class
 	private String[][] availableLanguageTags = {{"French","fr_FR"},{"Yoruba","yo_NG"},{"Spanish","es"}};//BootSelectOneMenu.class
-	private String[] actions= {"addGreetingBundle","changeTheme",
-			"decrement","increment","reset",
-			"searchActionsWithFilter","showAllActions",
-			"updateGreeting","updateLanguage"};
+	private String[][] actions= {{"addGreetingBundle","Add Greeting Bundle"},{"changeTheme", "Change Theme"},
+			{"decrement","Decrement presents"},{"increment", "Increment presents"},{"reset","Reset page"},
+			{"searchActionsWithFilter","Search Actions With Filter"},{"showAllActions", "Show All Actions"},
+			{"updateGreeting","Update Greeting"},{"updateLanguage","Update Language"}};
 	private String[] filterSelectedActions;//BootSelectManyMenu.class
 	private String[] images = {"close-squirrel-1381764.jpg","daisy-s-1375598.jpg",
 			"hinds-1638023.jpg","on-the-road-6-1384796.jpg","small-alpine-village-1639266.jpg",
@@ -91,8 +94,8 @@ public class GreetingBean extends BaseBean {
 		return theme;
 	}
 
-	public void setTheme(Theme Theme) {
-		this.theme = Theme;
+	public void setTheme(Theme theme) {
+		this.theme = theme;
 	}
 
 	public String getSelectedLanguageTag() {
@@ -187,7 +190,7 @@ public class GreetingBean extends BaseBean {
 		return availableLanguageTags;
 	}
 
-	public String[] getActions() {
+	public String[][] getActions() {
 		return actions;
 	}
 
@@ -215,6 +218,7 @@ public class GreetingBean extends BaseBean {
 		try {
 			Thread.sleep(400);
 		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
 		}
 		++numberOfPresents;
 	}
@@ -225,6 +229,7 @@ public class GreetingBean extends BaseBean {
 		try {
 			Thread.sleep(400);
 		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
 		}
 		--numberOfPresents;
 	}
@@ -268,12 +273,12 @@ public class GreetingBean extends BaseBean {
 			return;
 		}
 		
-		actionLogs = FacesLoggingInterceptor.ACTION_LOGS.stream().filter((actionLog)->{
+		actionLogs = FacesLoggingInterceptor.ACTION_LOGS.stream().filter(actionLog->{
 			for(String filterAction:filterSelectedActions) {
 				if(actionLog.action.equals(filterAction))
-					return false;
+					return true;
 			}
-			return true;
+			return false;
 		}).collect(Collectors.toList());
 	}
 	

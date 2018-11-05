@@ -11,7 +11,7 @@
 		<b:panel popup="true">
 			<f:facet name="header">Welcome</f:facet>
 			This app is a demo of the QA-Boot Library, an implementation of Bootstrap 3 for JSF 2.2
-			To view the JSF source code go to <a href="/resources/sources/greeting.xhtml.txt">greeting.xhtml</a>
+			To view the JSF source code go to <a href="greeting.xhtml">greeting.xhtml</a>
 		</b:panel>		
 		<b:row style="margin-top:80px;" id="mainComp">
 			<h:form>
@@ -152,9 +152,11 @@
 									<b:glyph value="globe"></b:glyph>
 								</f:facet>
 								<f:selectItems value="#{greeting.languages}"
-									itemLabel="#{langGroup[0]}"
 									itemValue="#{langGroup[1]}"
 									var="langGroup">
+									<f:facet name="label">
+										<img src="/resources/images/#{langGroup[1]}.png" style="height: 1.5em;margin-right: 1em;" />#{langGroup[0]}
+									</f:facet>
 								</f:selectItems>
 							</b:selectOneInputGroup>
 						</b:formGroup>
@@ -179,7 +181,10 @@
 						<b:formGroup>
 							<label>Theme</label>
 							<b:selectOneListbox value="#{greeting.theme}" mainClass="fill100">
-								<f:selectItems value="#{greeting.availableThemes}">
+								<f:selectItems value="#{greeting.availableThemes}" var="val">
+									<f:facet name="label">
+										<b:glyph value="modal-window"></b:glyph> #{val}
+									</f:facet>
 								</f:selectItems>
 							</b:selectOneListbox>
 						</b:formGroup>
@@ -191,11 +196,14 @@
 							</b:button>
 						</b:formGroup>
 						<b:formGroup>
-							<label>Background Images</label>
+							<label>Carousel Images</label>
 							<b:selectManyListbox mainClass="#{loader.overlayClass} fill100"
 								value="#{greeting.filterImages}" 
 								data-overlay-target="#{carouselColumnComp.clientId}">
-								<f:selectItems value="#{greeting.images}">
+								<f:selectItems value="#{greeting.images}" var="image">
+									<f:facet name="label">
+										<img src="/resources/images/#{image}" style="height: 2em" />
+									</f:facet>
 								</f:selectItems>
 								<f:ajax onevent="#{loader.overlayAjaxLoader}"
 									onerror="refresh" 
@@ -221,9 +229,11 @@
 								buttonClass="btn-block"
 								mainClass="fill100">
 								<f:selectItems value="#{greeting.availableLanguageTags}"
-									itemLabel="#{langGroup[0]}"
 									itemValue="#{langGroup[1]}"
 									var="langGroup">
+									<f:facet name="label">
+										<img src="/resources/images/#{langGroup[1]}.png" style="height: 1.5em;margin-right: 1em;" />#{langGroup[0]}
+									</f:facet>
 								</f:selectItems>
 							</b:selectOneMenu>
 						</b:formGroup>
@@ -273,7 +283,9 @@
 							<b:selectManyMenu id="actions" label="Select filter to use"
 								mainClass="fill100" buttonClass="btn-block"
 								value="#{greeting.filterSelectedActions}">
-								<f:selectItems value="#{greeting.actions}">
+								<f:selectItems value="#{greeting.actions}" var="action"
+									itemValue="#{action[0]}"
+									itemLabel="#{action[1]}">
 								</f:selectItems>
 							</b:selectManyMenu>
 						</b:formGroup>
