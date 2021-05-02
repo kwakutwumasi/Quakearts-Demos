@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://quakearts.com/2.0/boot">
+<ui:composition template="template.xhtml">
+	<ui:define name="content">
+		<h:form>
+		<b:sideMenu style="padding-top:100px;">
+			<b:nav>
+				<h:commandLink value="Microsoft Authenticator"
+					style="#{helpBean.mode eq 'MICROSOFT'?'background-color:grey;color:white':''}">
+					<f:facet name="nav-icon">
+						<b:fa value="windows" />
+					</f:facet>
+					<f:ajax onevent="#{loader.mainAjaxLoader}" render="@form" execute="@this"></f:ajax>
+					<f:setPropertyActionListener target="#{helpBean.mode}" value="MICROSOFT" />
+				</h:commandLink>
+				<h:commandLink value="Google Authenticator"
+					style="#{helpBean.mode eq 'GOOGLE'?'background-color:grey;color:white':''}">
+					<f:facet name="nav-icon">
+						<b:fa value="google" />
+					</f:facet>
+					<f:ajax onevent="#{loader.mainAjaxLoader}" render="@form" execute="@this"></f:ajax>
+					<f:setPropertyActionListener target="#{helpBean.mode}" value="GOOGLE" />
+				</h:commandLink>
+			</b:nav>
+		</b:sideMenu>
+		<b:column xs="12" sm="8" offsetsm="2" md="4" offsetmd="4">
+			<b:panel rendered="#{helpBean.mode eq 'MICROSOFT'}">
+				<f:facet name="header"><h4>Using Microsoft Authenticator App:</h4>
+					<sub>
+						<h:commandLink value="(Click here to use Google Authenticator)">
+							<f:ajax onevent="#{loader.mainAjaxLoader}" render="@form" execute="@this"></f:ajax>
+							<f:setPropertyActionListener target="#{helpBean.mode}" value="GOOGLE" />
+						</h:commandLink>
+					</sub>
+				</f:facet>
+				<div class="store-links">
+					<a href="https://play.google.com/store/apps/details?id=com.azure.authenticator" target="blank">
+						<img src="resources/images/Play_Store_badge_EN.svg" alt="Play Store Link" class="img-badge" />
+					</a>
+					<a href="https://apps.apple.com/us/app/microsoft-authenticator/id983156458" target="blank">
+						<img src="resources/images/App_Store_Badge.svg" alt="App Store Link" class="img-badge" />
+					</a>
+				</div>
+				<ol>
+					<li>Use the links above to download the app onto your phone</li>
+					<li>
+						<p>When the app has completed installation, open it. Click on "Add Account" to begin</p>
+						<img src="resources/images/microsoftauthenticatorapp1.png" class="img-help" alt="Image 1" />
+					</li>
+					<li>
+						<p>Click on "Other Account (Google, Facebook, etc.)"</p>
+						<img src="resources/images/microsoftauthenticatorapp2.png" class="img-help" alt="Image 2" />
+					</li>					
+					<li>
+						<p>Scan the QR Code</p>
+						<img src="resources/images/microsoftauthenticatorapp3.png" class="img-help" alt="Image 3" />
+					</li>					
+					<li>
+						<p>Your user account and name will appear under the "fastpacetransfer" name. Click on it</p>
+						<img src="resources/images/microsoftauthenticatorapp4.png" class="img-help" alt="Image 4" />
+					</li>					
+					<li>
+						<p>Enter the code shown under the "One-time password code" label into the OTP Code Text box, then click "Activate".
+							If you get an error message contact the System Administrator</p>
+						<img src="resources/images/microsoftauthenticatorapp5.png" class="img-help" alt="Image 5" />
+					</li>					
+				</ol>
+			</b:panel>
+			<b:panel rendered="#{helpBean.mode eq 'GOOGLE'}">
+				<f:facet name="header"><h4>Using Google Authenticator App:</h4>
+					<sub>
+						<h:commandLink value="(Click here to use Microsoft Authenticator)">
+							<f:ajax onevent="#{loader.mainAjaxLoader}" render="@form" execute="@this"></f:ajax>
+							<f:setPropertyActionListener target="#{helpBean.mode}" value="MICROSOFT" />
+						</h:commandLink>	
+					</sub>			
+				</f:facet>
+				<div class="store-links">
+					<a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" target="blank">
+						<img src="resources/images/Play_Store_badge_EN.svg" alt="Play Store Link" class="img-badge" />
+					</a>
+					<a href="https://apps.apple.com/us/app/google-authenticator/id388497605" target="blank">
+						<img src="resources/images/App_Store_Badge.svg" alt="App Store Link" class="img-badge" />
+					</a>
+				</div>
+				<ol>
+					<li>Use the links above to download the app onto your phone</li>
+					<li>
+						<p>When the app has completed installation, open it. Click on "+" sign on the bottom right corner to begin</p>
+						<img src="resources/images/googleauthenticatorapp1.png" class="img-help" alt="Image 1" />
+					</li>
+					<li>
+						<p>Click on "Scan QR Code"</p>
+						<img src="resources/images/googleauthenticatorapp2.png" class="img-help" alt="Image 2" />
+					</li>					
+					<li>
+						<p>Scan the QR Code</p>
+						<img src="resources/images/googleauthenticatorapp3.png" class="img-help" alt="Image 3" />
+					</li>					
+					<li>
+						<p>Enter the code shown under the "fastpacetransfer.com" label into the OTP Code Text box, then click "Activate".
+							If you get an error message contact the System Administrator</p>
+						<img src="resources/images/googleauthenticatorapp4.png" class="img-help" alt="Image 5" />
+					</li>					
+				</ol>
+			</b:panel>
+		</b:column>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

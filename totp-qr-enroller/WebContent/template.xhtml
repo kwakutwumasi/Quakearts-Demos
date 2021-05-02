@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://quakearts.com/2.0/boot"
+      xmlns:ut="http://quakearts.com/utils">
+<h:head>
+  <title><ui:insert name="title">Enroll Your Authenticator</ui:insert></title>
+  <style>
+.img-center {
+	display: inline-block;
+	overflow: hidden;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    margin:-25px -114px;
+}  
+.alert{
+	position: fixed;
+	width: 50%;
+	left: 50%;
+	top: 20%;
+	margin-left: -25%;
+	z-index: 1002;
+}
+.img-help {
+	height: 500px;
+	position: relative;
+	left: 50%;
+	margin-left: -146px;
+}
+.img-badge {
+	height: 40px
+}
+.store-links {
+	margin-bottom: 30px;
+	position: relative;
+	left: 50%;
+	margin-left: -136px;
+}
+.app-menu {
+	display: inline-block;
+	width: 120px;
+	margin-right: 5px;
+}
+  </style>
+</h:head>
+
+<h:body>
+	<b:ajaxLoader mainloaderimage="../resources/images/loading-squares.gif"
+		miniloaderimage="../resources/images/login-loading.GIF"
+		overlayloaderimage="../resources/images/loading-small.svg"
+		startTimeout="1" />
+	<b:container fluid="true" id="container" style="padding-top:100px">
+		<b:navbar fluid="true" responsive="true" type="default" position="fixed-top">
+			<f:facet name="header">
+				<a href="/" class="navbar-brand">
+					<b:glyph value="home"></b:glyph> 
+					Authentication App Enroller
+				</a>
+			</f:facet>
+			<b:nav>
+				<b:menu value="Help">
+					<h:outputLink value="help.jsf"><span class="app-menu">How to enroll</span><b:fa value="question"></b:fa></h:outputLink>
+				</b:menu>
+				<b:menu value="Contact">
+					<h:outputLink value="tel:#{helpBean.phone}"><span class="app-menu">#{helpBean.phone}</span><b:fa value="phone"></b:fa></h:outputLink>
+					<h:outputLink value="mailto:#{helpBean.email}"><span class="app-menu">#{helpBean.email}</span><b:fa value="send"></b:fa></h:outputLink>
+				</b:menu>
+			</b:nav>
+		</b:navbar>
+		<ui:insert name="content"></ui:insert>
+	</b:container>
+	<footer>
+	<div style="text-align: center; font-family: Arial; font-size: 10px">
+		(c)Copyright QuakeArts.com 
+		<h:outputText value="#{ut:now()}">
+			<f:convertDateTime pattern="yyyy"></f:convertDateTime>
+		</h:outputText>
+	</div>
+</footer>
+</h:body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://quakearts.com/2.0/boot">
+<ui:composition template="template.xhtml">
+	<ui:define name="title">Help Information</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<b:messages successMessage="true" id="messages" showDetail="true" dismissible="true"></b:messages>
+			<b:column xs="12" sm="8" offsetsm="2" md="4" offsetmd="4">
+				<b:panel type="primary">
+					<f:facet name="header">1. Copy and paste the enrollment code received in your email</f:facet>
+					<b:formGroup styleClass="#{loader.overlayAjaxLoader}">
+						<label>Code</label>
+						<h:inputTextarea value="#{qrCodeEnroller.code}" id="codeInputText"
+							styleClass="form-control" rows="10">
+							<f:facet name="label">
+								<b:fa value="lock"></b:fa>
+							</f:facet>
+							<f:ajax execute="@this" render="activateButton" event="keyup" onevent="#{loader.overlayAjaxLoader}"></f:ajax>
+						</h:inputTextarea>
+					</b:formGroup>
+					<b:formGroup>
+						<b:button disabled="#{empty qrCodeEnroller.code}" id="activateButton">
+							<f:ajax execute="codeInputText" render="qrCodePanel activationPanel messages"
+								listener="#{qrCodeEnroller.generateQRCode}" onevent="#{loader.mainAjaxLoader}">
+							</f:ajax>
+							Generate QR Code
+						</b:button>
+					</b:formGroup>
+				</b:panel>
+				<b:panel id="qrCodePanel" type="primary">
+					<f:facet name="header">2. Scan the QR Code with your Authenticator App
+						<a href="help.jsf" target="_blank" style="color:orange">What is this<b:fa value="question" /></a>
+					</f:facet>
+					<h:panelGroup rendered="#{! empty qrCodeEnroller.qrImageDataURI}">
+						<img src="#{qrCodeEnroller.qrImageDataURI}" style="img-center" 
+							alt="QR Enrollment Image Missing" />
+					</h:panelGroup>
+				</b:panel>
+				<b:panel id="activationPanel" type="primary">
+					<f:facet name="header">3. Generate a single code and enter it activate</f:facet>
+					<b:formGroup>
+						<label>OTP Code</label>
+						<b:inputText value="#{qrCodeEnroller.otpCode}" id="otpCodeInputText" 
+							disabled="#{empty qrCodeEnroller.qrImageDataURI}">
+							<f:facet name="label">
+								<b:fa value="lock"></b:fa>
+							</f:facet>
+						</b:inputText>
+					</b:formGroup>
+					<b:formGroup>
+						<b:button disabled="#{empty qrCodeEnroller.qrImageDataURI}">
+							<f:ajax execute="otpCodeInputText" render="messages"
+								listener="#{qrCodeEnroller.activateDevice}" onevent="#{loader.mainAjaxLoader}">
+							</f:ajax>
+							Activate
+						</b:button>
+					</b:formGroup>
+				</b:panel>
+			</b:column>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
