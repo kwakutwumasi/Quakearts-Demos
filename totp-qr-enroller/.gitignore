@@ -1,0 +1,10 @@
+/target/
+/atomikos/
+/enrollmentDB/
+/.settings
+/.project
+/.classpath
+/*.lck
+/*.log
+/*.keystore
+/webservers/

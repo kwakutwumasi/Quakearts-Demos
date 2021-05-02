@@ -1,0 +1,9 @@
+{
+	"datasource.class":"org.apache.derby.jdbc.EmbeddedXADataSource",
+	"datasource.name":"EnrollmentDS",
+	"xa.databaseName":"./enrollmentDB",
+	"xa.createDatabase":"create",
+	"minPoolSize":3,
+	"maxPoolSize":20,
+	"localTransactionMode":true
+}
