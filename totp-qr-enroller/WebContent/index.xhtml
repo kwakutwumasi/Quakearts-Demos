@@ -36,8 +36,10 @@
 						<a href="help.jsf" target="_blank" style="color:orange">What is this<b:fa value="question" /></a>
 					</f:facet>
 					<h:panelGroup rendered="#{! empty qrCodeEnroller.qrImageDataURI}">
-						<img src="#{qrCodeEnroller.qrImageDataURI}" style="img-center" 
-							alt="QR Enrollment Image Missing" />
+						<div style="padding: 30px">
+							<img src="#{qrCodeEnroller.qrImageDataURI}" class="img-center" 
+								alt="QR Enrollment Image Missing" />
+						</div>
 					</h:panelGroup>
 				</b:panel>
 				<b:panel id="activationPanel" type="primary">

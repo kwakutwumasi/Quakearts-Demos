@@ -56,6 +56,8 @@ public class QRCodeEnrollerBean extends BaseBean {
 	
 	private static final String DATA_URI_FORMAT = "data:image/png;base64,%s";
 	
+	private static final int QR_IMAGE_BOX_LENGTH = getQRImageBoxLengthSystem();
+	
 	@Inject @CryptoResourceHandle @CryptoInstance("qrenroller")
 	private transient CryptoResource cryptoResource;
 	
@@ -78,6 +80,19 @@ public class QRCodeEnrollerBean extends BaseBean {
 	
 	public String getCode() {
 		return code;
+	}
+	
+	private static int getQRImageBoxLengthSystem() {
+		try {
+			return Integer.parseInt(System.getProperty("qr.image.box.length", "300"));
+		} catch (Exception e) {
+			//Do nothing
+		}
+		return 300;
+	}
+
+	public int getQrImageBoxLength() {
+		return QR_IMAGE_BOX_LENGTH;
 	}
 	
 	public void setCode(String code) {
@@ -172,7 +187,7 @@ public class QRCodeEnrollerBean extends BaseBean {
 		
 		BitMatrix bitMatrix;
 		try {
-			bitMatrix = qrCodeWriter.encode(otpAuthURI, BarcodeFormat.QR_CODE, 600, 600);
+			bitMatrix = qrCodeWriter.encode(otpAuthURI, BarcodeFormat.QR_CODE, QR_IMAGE_BOX_LENGTH, QR_IMAGE_BOX_LENGTH);
 		} catch (WriterException e) {
 			Main.log.error("Unable to generate", e);
 			addError(INVALID_DATA, "The Code could not be written as a QR String", FacesContext.getCurrentInstance());
